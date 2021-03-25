@@ -22,7 +22,7 @@ table, th, td {
 		<div class="jumbotron">
 			<h2 class="display-4">Users</h2>
 			
-			<table style="float:inherit">
+			<!--  <table style="float:inherit">
 			   <tr><th>ID</th><th>Name</th><th>Email</th><th>Password</th></tr>
 			   <c:forEach items="${users}" var="user" varStatus="count">
 			    <tr id="${count.index}">
@@ -32,7 +32,7 @@ table, th, td {
 			        <td>${user.password}</td>
 			    </tr>
 			  </c:forEach>
-			</table>
+			</table> -->
 		</div>
 	  </div>
 	 </div>

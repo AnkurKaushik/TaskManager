@@ -1,4 +1,4 @@
-package com.example.SpringSecurityManager.exceptions;
+package com.example.TaskManager.exceptions;
 
 public class UserNotFoundException extends RuntimeException  {
 	private static final long serialVersionUID = 1L;

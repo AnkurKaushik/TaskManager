@@ -1,4 +1,4 @@
-package com.example.SpringSecurityManager.controllers;
+package com.example.TaskManager.controllers;
 
 import java.util.ArrayList;
 
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.SpringSecurityManager.entities.User;
-import com.example.SpringSecurityManager.services.UserService;
+import com.example.TaskManager.entities.User;
+import com.example.TaskManager.services.UserService;
 
 
 @Controller

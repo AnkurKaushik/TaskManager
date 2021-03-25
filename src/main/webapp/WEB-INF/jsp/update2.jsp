@@ -21,7 +21,7 @@
 		
 		<div class="jumbotron">
 			<p class="lead"> User ID: ${IDedit}</p>
-			<div>
+			<!-- <div>
 				<table style="float:inherit">
 				   <tr><th>ID</th><th>Name</th><th>Email</th><th>Password</th></tr>
 				   <c:forEach items="${user}" var="userE" varStatus="count">
@@ -39,6 +39,7 @@
 			<div>
 				<a href="/">Return</a>
 			</div>
+			-->
 		</div>
 	</div>
 	</div>

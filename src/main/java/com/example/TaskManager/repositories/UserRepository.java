@@ -1,8 +1,8 @@
-package com.example.SpringSecurityManager.repositories;
+package com.example.TaskManager.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.example.SpringSecurityManager.entities.User;
+import com.example.TaskManager.entities.User;
 
 public interface UserRepository extends CrudRepository<User, Integer> {
 

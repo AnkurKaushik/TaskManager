@@ -1,31 +1,38 @@
-# Implement Spring Security with Authentication .
-## DESCRIPTION
+# Phase 3 End Project - Create a Task Manager
+## Application
+## Project Objective:
+### Create a task manager application with spring boot and spring Data JPA.
 
-## Project objective: 
+### Background of Problem Statement:
+The Task Manager is for organizing tasks (or to-dos) for workers.
 
-As a developer, build Authentication Provider in Spring Security.
+The logged in user should be able to create, display, delete, and update tasks (basically to-do items.)
 
+Tasks are the user's own tasks. Users create and edit tasks to themselves but can neither create tasks for others, reassign existing tasks to other users or even view tasks that do not belong to them.
 
-Background of the problem statement: 
+The application will have UI in JSP.
 
-You have been assigned a task by the team to add more flexibility rather than using the standard scenario in building Spring Security.
+### Suggested JSP Pages:
 
-Following requirements should be met: 
-
-   * You should have a spring MVC web application as part of your submission. (JSP or Thymeleaf are both acceptable front-ends)
-   * User Password style in-memory storage is acceptable but variations on this (such as storing to database) are also acceptable.
-   * Users should be redirected to a login.html page if not authenticated before being redirected to the original page once authenticated.
-   * A few of the source code should be tracked on GitHub repositories. You need to document the tracked  files which are ignored during the final push to the GitHub repository.
-   * The submission of your GitHub repository link  is mandatory. In order to track your task, you need to share the link of the repository in the document. 
-   * The step-by-step process involved in completing this task should be documented.
-
-
-### Hints
-
-You can find a discussion on implementing Spring Security in the [Spring Online Documentation.](https://spring.io/guides/gs/securing-web/)
- 
-
-### Due Date
-
-2021-03-24
-
+create task
+display tasks
+delete tasks
+update task.
+Login
+User Registration
+Index/Welcome
+Important Notes:
+Project must be well organized in packages.
+Usage of Repository, Service, Entity, and custom exception handling
+All data must persist in the database. (User information should also be stored in database)
+User must be logged in before adding or seeing the tasks. (spring boot security is acceptable but not mandatory.)
+User must get registered, to perform the login.
+Either monolithic or microservice based architecture is acceptable.
+Important fields of this application:
+Task name (text box)
+Start date (date picker)
+End date (date picker)
+Description (text area)
+Email (text box)
+Severity (drop down) (High, medium, low)
+User (tasks should belong to a user)

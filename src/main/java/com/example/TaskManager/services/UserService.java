@@ -1,12 +1,12 @@
-package com.example.SpringSecurityManager.services;
+package com.example.TaskManager.services;
 
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.SpringSecurityManager.entities.User;
-import com.example.SpringSecurityManager.repositories.UserRepository;
+import com.example.TaskManager.entities.User;
+import com.example.TaskManager.repositories.UserRepository;
 
 
 

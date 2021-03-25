@@ -1,4 +1,4 @@
-package com.example.SpringSecurityManager.controllers;
+package com.example.TaskManager.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.SpringSecurityManager.entities.User;
-import com.example.SpringSecurityManager.services.UserService;
+import com.example.TaskManager.entities.User;
+import com.example.TaskManager.services.UserService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

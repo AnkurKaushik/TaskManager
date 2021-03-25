@@ -20,7 +20,7 @@
 		 <div class="center">
 			<div class="jumbotron">
 				<h2 class="display-4">Update Table</h2>
-				
+				<!--  
 				<p class="lead"> User ID: ${ID}</p>
 				<table style="float:inherit">
 				   <tr><th>ID</th><th>Name</th><th>Email</th><th>Password</th></tr>
@@ -41,6 +41,8 @@
 					<input type="text" id="passwordedit" name="passwordedit" placeholder="Password" required>	
 					<input type="submit" value="Enter" class="btn btn-primary mb-2"/>
 				</form>
+				
+				-->
 			</div>
 		 </div>
 		</div>
