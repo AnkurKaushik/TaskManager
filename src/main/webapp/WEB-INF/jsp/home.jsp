@@ -10,6 +10,16 @@
 	</style>
 </head>
 <body style="background-color:lightblue;">
+	<nav class="navbar navbar-dark bg-dark">
+	  <div class="container-fluid">
+	    <a class="navbar-brand" href="/">Task Manager</a>
+	      <ul class="navbar-nav me-auto mb-2 mb-lg-0"> 
+	      	<li><a class="nav-link active" aria-current="page" href="/about">About</a></li>
+	      </ul>
+	      
+	  </div>
+	</nav>
+	
 	<div class="d-flex justify-content-center">
 		<div class="w-75 p-3">
 			<div class="center">

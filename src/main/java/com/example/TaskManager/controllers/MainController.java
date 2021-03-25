@@ -42,6 +42,16 @@ public class MainController {
 		 return "register";
      }
 	 
+	 @GetMapping(value="/login")
+     public String showLoginPage(ModelMap model){
+		 return "login";
+     }
+	 
+	 @GetMapping(value="/about")
+     public String showAboutPage(ModelMap model){
+		 return "about";
+     }
+	 
 	 @PostMapping(value="/index")
 	 public String showIndexPage(@RequestParam("namelogin") String namelogin, @RequestParam("passwordlogin") String passwordlogin, ModelMap modelMap)
 	 {
