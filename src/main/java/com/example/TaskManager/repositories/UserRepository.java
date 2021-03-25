@@ -2,9 +2,9 @@ package com.example.TaskManager.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.example.TaskManager.entities.User;
+import com.example.TaskManager.entities.UserTask;
 
-public interface UserRepository extends CrudRepository<User, Integer> {
+public interface UserRepository extends CrudRepository<UserTask, Integer> {
 
-    public User findByName(String name);
+    public UserTask findByName(String name);
 }

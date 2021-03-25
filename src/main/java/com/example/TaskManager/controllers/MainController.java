@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.TaskManager.entities.User;
+import com.example.TaskManager.entities.UserTask;
 import com.example.TaskManager.services.UserService;
 
 
@@ -37,11 +37,16 @@ public class MainController {
 		 return "home";
      }
 	 
+	 @GetMapping(value="/register")
+     public String showRegisterPage(ModelMap model){
+		 return "register";
+     }
+	 
 	 @PostMapping(value="/index")
 	 public String showIndexPage(@RequestParam("namelogin") String namelogin, @RequestParam("passwordlogin") String passwordlogin, ModelMap modelMap)
 	 {
 		 try {
-			 User u = userService.GetUserByName(namelogin);
+			 UserTask u = userService.GetUserByName(namelogin);
 			 if(u.getName().equals(namelogin) && u.getPassword().equals(passwordlogin))
 		     {
 			     return "index";
@@ -76,12 +81,12 @@ public class MainController {
 	        
 		try 
 		{
-			User user = userService.GetUserById(Integer.valueOf(id));
-			ArrayList<User> userList = new ArrayList<>();
+			UserTask user = userService.GetUserById(Integer.valueOf(id));
+			ArrayList<UserTask> userList = new ArrayList<>();
 			if(user != null)
 			{
 				userList.add(user);
-				Iterable<User> users = userList;
+				Iterable<UserTask> users = userList;
 				currID = id;
 				modelMap.put("user", users);
 			}
@@ -105,13 +110,13 @@ public class MainController {
 	 
 	 @PostMapping("/update2")                     
 	 public String updateDetails(@RequestParam("nameedit") String nameedit, @RequestParam("emailedit") String emailedit, @RequestParam("passwordedit") String passwordedit, ModelMap modelMap) {
-		 ArrayList<User> userList = new ArrayList<>();
+		 ArrayList<UserTask> userList = new ArrayList<>();
 		 try
 		 {
-			 User u = userService.GetUserById(Integer.valueOf(currID));
+			 UserTask u = userService.GetUserById(Integer.valueOf(currID));
 			 userService.setUser(u, nameedit, emailedit, passwordedit);
 			 userList.add(u);
-			 Iterable<User> users = userList;
+			 Iterable<UserTask> users = userList;
 			 modelMap.put("user", users);
 		 }
 		 catch (NumberFormatException e)

@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class User {
+public class UserTask {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
@@ -16,6 +16,8 @@ public class User {
     private String email;
 
     private String password;
+    
+    private String tasks;
 
     public String getPassword() {
         return password;
@@ -51,7 +53,15 @@ public class User {
     
     @Override
     public String toString() {
-    	return (id.toString() + " " + name + " " + email + " " + password);
+    	return (id.toString() + " " + name + " " + email + " " + password + "has tasks: " + tasks);
     }
+
+	public String getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(String tasks) {
+		this.tasks = tasks;
+	}
     
 }
