@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.TaskManager.entities.UserTask;
+import com.example.TaskManager.entities.singleUser;
+import com.example.TaskManager.exceptions.UserNotFoundException;
+import com.example.TaskManager.repositories.UserRepository;
 import com.example.TaskManager.services.UserService;
 
 
@@ -27,8 +29,11 @@ public class MainController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private UserRepository userRepository;
+	
     Logger logger = LoggerFactory.getLogger(MainController.class);
-    String currID = null;
+    Integer currID = null;
     	
 	 @GetMapping(value="/")
      public String showHomePage(ModelMap model, 
@@ -52,22 +57,39 @@ public class MainController {
 		 return "about";
      }
 	 
-	 @PostMapping(value="/index")
-	 public String showIndexPage(@RequestParam("namelogin") String namelogin, @RequestParam("passwordlogin") String passwordlogin, ModelMap modelMap)
+	 @PostMapping(value="/add")
+	 public String addUser(@RequestParam("nameadd") String nameadd, @RequestParam("emailadd") String emailadd, @RequestParam("passwordadd") String passwordadd, ModelMap modelMap)
 	 {
+		 ArrayList<singleUser> userarry = (ArrayList<singleUser>) userRepository.findAll();
 		 try {
-			 UserTask u = userService.GetUserByName(namelogin);
-			 if(u.getName().equals(namelogin) && u.getPassword().equals(passwordlogin))
-		     {
-			     return "index";
-			 }
-			 else 
-			 {
-				 return "home";
-			 }
+		 singleUser u = userService.GetUserByName(nameadd);
+		 for(singleUser su : userarry)
+			 if(su.getName().equals(nameadd)) return "error";
+		 singleUser user = new singleUser(nameadd,emailadd,passwordadd);
+		 userService.UpdateUser(user);
+		 return "success";
 		 }
-		 catch(NullPointerException e) {
-			 return "home";
+		 catch(Exception e)
+		 {
+			 return "error";
+		 }
+	 }
+	 
+	 @PostMapping(value="/loginHandler")
+	 public String handleLogin(@RequestParam("namelogin") String namelogin, @RequestParam("passwordlogin") String passwordlogin, ModelMap modelMap)
+	 {
+		 ArrayList<singleUser> userarry = (ArrayList<singleUser>) userRepository.findAll();
+		 try {
+		 for(singleUser su : userarry)
+		 {
+			 if(su.getName().equals(namelogin) && su.getPassword().equals(passwordlogin))
+				 return "update";
+		 }
+		 return "error";
+		 }
+		 catch(Exception e)
+		 {
+			 return "error";
 		 }
 	 }
 	 
@@ -87,46 +109,27 @@ public class MainController {
 	 }
 	 
 	 @PostMapping("/update")                     
-	 public String saveDetails(@RequestParam("id") String id, ModelMap modelMap) {
-	        
-		try 
-		{
-			UserTask user = userService.GetUserById(Integer.valueOf(id));
-			ArrayList<UserTask> userList = new ArrayList<>();
-			if(user != null)
-			{
-				userList.add(user);
-				Iterable<UserTask> users = userList;
-				currID = id;
-				modelMap.put("user", users);
-			}
-			else
-				return "nouser";
-		} 
-		catch (NumberFormatException e) 
-		{
-			// TODO Auto-generated catch block
+	 public String saveDetails(ModelMap modelMap) {
+		singleUser u;
+		try {
+			u = userService.GetUserById(currID);
+		} catch (Exception e) {
 			return "nouser";
-		} 
-		catch (Exception e) 
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		 	
-		modelMap.put("ID", id);
+		modelMap.put("userName", u.getName());
+		modelMap.put("userEmail", u.getEmail());
         return "update";           
 	 }
 	 
 	 @PostMapping("/update2")                     
 	 public String updateDetails(@RequestParam("nameedit") String nameedit, @RequestParam("emailedit") String emailedit, @RequestParam("passwordedit") String passwordedit, ModelMap modelMap) {
-		 ArrayList<UserTask> userList = new ArrayList<>();
+		 ArrayList<singleUser> userList = new ArrayList<>();
 		 try
 		 {
-			 UserTask u = userService.GetUserById(Integer.valueOf(currID));
+			 singleUser u = userService.GetUserById(Integer.valueOf(currID));
 			 userService.setUser(u, nameedit, emailedit, passwordedit);
 			 userList.add(u);
-			 Iterable<UserTask> users = userList;
+			 Iterable<singleUser> users = userList;
 			 modelMap.put("user", users);
 		 }
 		 catch (NumberFormatException e)

@@ -36,7 +36,6 @@
 					
 					<form method="post" action="add" class="w-50 mx-auto">
 						<div class="input-group">
-							<span data-octicon="alert"></span>
 					    	<span class="input-group-addon"><i class="fas fa-user fa-2x"></i>&nbsp;&nbsp;</span>
 					    	<input type="text" class="form-control" name="nameadd" placeholder="Name" id="nameadd"  required>
 					  	</div>

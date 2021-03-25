@@ -1,6 +1,7 @@
 <html>
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<script src="https://kit.fontawesome.com/801e5a8a65.js" crossorigin="anonymous"></script>
 	
 	<style>
 		.center {
@@ -25,9 +26,26 @@
 		 <div class="center">
 			<h1 class="display-4">Login Page</h1>
 				<div class="jumbotron">
-					<p class="lead"></p>
+					<div class="alert alert-dark alert-dismissible fade show" role="alert">
+					  <strong>Now that you've made an account</strong> You should log in below.
+					</div>
+					<br>
+					<form method="post" action="loginHandler" class="w-50 mx-auto">
+						<div class="input-group">
+					    	<span class="input-group-addon"><i class="fas fa-user fa-2x"></i>&nbsp;&nbsp;</span>
+					    	<span class="input-group-text" id="basic-addon1">Name</span>
+					    	<input type="text" class="form-control" name="namelogin" id="namelogin"  required>
+					  	</div>
+						<br>
+						<div class="input-group">
+					    	<span class="input-group-addon"><i class="fas fa-user-lock fa-2x"></i>&nbsp;&nbsp;</span>
+					    	<span class="input-group-text" id="basic-addon1">Password</span>
+					    	<input type="text" class="form-control" name="passwordlogin" id="passwordlogin" required>
+					  	</div>
+					  	 	
+						<br><br><input type="submit" value="Enter" class="btn btn-secondary mb-2"/>
+					</form>
 					
-				
 				</div>
 		 </div>
 		</div>

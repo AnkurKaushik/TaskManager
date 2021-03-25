@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.TaskManager.entities.UserTask;
+import com.example.TaskManager.entities.singleUser;
 import com.example.TaskManager.services.UserService;
 
 import org.slf4j.Logger;
@@ -29,7 +29,7 @@ public class UserController {
 		
 		
 		logger.info("Getting all Users");
-		Iterable<UserTask> users = userService.GetAllUsers();
+		Iterable<singleUser> users = userService.GetAllUsers();
 		
 		logger.info("Passing users to view");
 	    model.addAttribute("users", users);    
