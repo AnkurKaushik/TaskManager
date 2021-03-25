@@ -83,7 +83,10 @@ public class MainController {
 		 for(singleUser su : userarry)
 		 {
 			 if(su.getName().equals(namelogin) && su.getPassword().equals(passwordlogin))
-				 return "update";
+			 {
+				modelMap.put("userName", namelogin);
+				return "dashboard";
+			 }
 		 }
 		 return "error";
 		 }
@@ -108,16 +111,8 @@ public class MainController {
 		 return true;
 	 }
 	 
-	 @PostMapping("/update")                     
+	 @GetMapping("/update")                     
 	 public String saveDetails(ModelMap modelMap) {
-		singleUser u;
-		try {
-			u = userService.GetUserById(currID);
-		} catch (Exception e) {
-			return "nouser";
-		}
-		modelMap.put("userName", u.getName());
-		modelMap.put("userEmail", u.getEmail());
         return "update";           
 	 }
 	 
