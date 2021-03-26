@@ -27,6 +27,9 @@
 			<h1 class="display-4">Dashboard</h1>
 				<div class="jumbotron">
 					<p class="lead" align="right"><span class="badge bg-success">Name: ${userName}</span></p>
+					
+					<strong>${sTask}</strong>
+					
 					<p class="lead">You are logged in.</p>
 					<p class="lead">Select an option below</p>			
 					

@@ -17,9 +17,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.TaskManager.entities.AllTasks;
+import com.example.TaskManager.entities.Task;
+import com.example.TaskManager.entities.User;
 import com.example.TaskManager.entities.singleUser;
 import com.example.TaskManager.exceptions.UserNotFoundException;
+import com.example.TaskManager.repositories.TaskRepository;
 import com.example.TaskManager.repositories.UserRepository;
+import com.example.TaskManager.services.TaskService;
 import com.example.TaskManager.services.UserService;
 
 
@@ -32,13 +37,21 @@ public class MainController {
 	@Autowired
 	private UserRepository userRepository;
 	
+	@Autowired
+	private TaskService taskService;
+	
+	@Autowired
+	private TaskRepository taskRepository;
+	
     Logger logger = LoggerFactory.getLogger(MainController.class);
     Integer currID = null;
-    	
+    User currUser = null;
+    
 	 @GetMapping(value="/")
      public String showHomePage(ModelMap model, 
     		 @RequestParam(value="name", required=false, defaultValue="World") String name){
-	     model.addAttribute("name", name);    
+	     model.addAttribute("name", name);
+	     currUser = null;
 		 return "home";
      }
 	 
@@ -60,12 +73,12 @@ public class MainController {
 	 @PostMapping(value="/add")
 	 public String addUser(@RequestParam("nameadd") String nameadd, @RequestParam("emailadd") String emailadd, @RequestParam("passwordadd") String passwordadd, ModelMap modelMap)
 	 {
-		 ArrayList<singleUser> userarry = (ArrayList<singleUser>) userRepository.findAll();
+		 ArrayList<User> userarry = (ArrayList<User>) userRepository.findAll();
 		 try {
-		 singleUser u = userService.GetUserByName(nameadd);
-		 for(singleUser su : userarry)
+		 User u = userService.GetUserByName(nameadd);
+		 for(User su : userarry)
 			 if(su.getName().equals(nameadd)) return "error";
-		 singleUser user = new singleUser(nameadd,emailadd,passwordadd);
+		 User user = new User(nameadd,emailadd,passwordadd);
 		 userService.UpdateUser(user);
 		 return "success";
 		 }
@@ -78,13 +91,14 @@ public class MainController {
 	 @PostMapping(value="/loginHandler")
 	 public String handleLogin(@RequestParam("namelogin") String namelogin, @RequestParam("passwordlogin") String passwordlogin, ModelMap modelMap)
 	 {
-		 ArrayList<singleUser> userarry = (ArrayList<singleUser>) userRepository.findAll();
+		 ArrayList<User> userarry = (ArrayList<User>) userRepository.findAll();
 		 try {
-		 for(singleUser su : userarry)
+		 for(User su : userarry)
 		 {
 			 if(su.getName().equals(namelogin) && su.getPassword().equals(passwordlogin))
 			 {
 				modelMap.put("userName", namelogin);
+				currUser = su;
 				return "dashboard";
 			 }
 		 }
@@ -116,28 +130,23 @@ public class MainController {
         return "update";           
 	 }
 	 
+	 public User findUser(String name)
+	 {
+		 ArrayList<User> userarry = (ArrayList<User>) userRepository.findAll();
+		 for(User u : userarry)
+			 if(u.getName().equals(name)) return u;
+		 return null;
+	 }
+	 
 	 @PostMapping("/update2")                     
-	 public String updateDetails(@RequestParam("nameedit") String nameedit, @RequestParam("emailedit") String emailedit, @RequestParam("passwordedit") String passwordedit, ModelMap modelMap) {
-		 ArrayList<singleUser> userList = new ArrayList<>();
-		 try
-		 {
-			 singleUser u = userService.GetUserById(Integer.valueOf(currID));
-			 userService.setUser(u, nameedit, emailedit, passwordedit);
-			 userList.add(u);
-			 Iterable<singleUser> users = userList;
-			 modelMap.put("user", users);
-		 }
-		 catch (NumberFormatException e)
-		 {
-			e.printStackTrace();
-		 }
-		 catch(Exception e)
-		 {
-			e.printStackTrace();
-		 }
-		 modelMap.put("IDedit", currID);
+	 public String updateDetails(@RequestParam("taskname") String taskname, @RequestParam("taskstart") String taskstart, @RequestParam("taskend") String taskend, @RequestParam("taskdesc") String taskdesc, @RequestParam("taskemail") String taskemail, @RequestParam("sev") String taskseverity, ModelMap modelMap) {
 		 
-		 return "update2";
+		 Task at = new Task(taskname, taskstart, taskend, taskseverity, taskdesc, taskemail, currUser);
+		 taskRepository.save(at);
+		 modelMap.put("userName", currUser.getName());
+		 modelMap.put("sTask", "Successfully added task: " + taskname);
+		 //taskService.UpdateTask(at);
+		 return "dashboard";
 	 }
 }
 

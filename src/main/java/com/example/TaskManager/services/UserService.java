@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.TaskManager.entities.User;
 import com.example.TaskManager.entities.singleUser;
 import com.example.TaskManager.repositories.UserRepository;
 
@@ -18,19 +19,19 @@ public class UserService {
 	
 	
 
-    public Iterable<singleUser> GetAllUsers()
+    public Iterable<User> GetAllUsers()
     {
         return userRepository.findAll();
     }
 
 
-    public singleUser GetUserByName(String name) {
-        singleUser foundUser = userRepository.findByName(name);
+    public User GetUserByName(String name) {
+        User foundUser = userRepository.findByName(name);
         return foundUser;
     }
     
-    public singleUser GetUserById(int id) throws Exception {
-    	Optional<singleUser> foundUser = userRepository.findById(id);
+    public User GetUserById(int id) throws Exception {
+    	Optional<User> foundUser = userRepository.findById(id);
     	
     	//TODO: we need to decide how to handle a "Not Found" condition
     	if(!foundUser.isPresent())
@@ -39,11 +40,11 @@ public class UserService {
     	return(foundUser.get());
     }
     
-    public void UpdateUser(singleUser usertoUpdate) {
+    public void UpdateUser(User usertoUpdate) {
     	userRepository.save(usertoUpdate);
     }
     
-    public void setUser(singleUser u, String name, String email, String password) {
+    public void setUser(User u, String name, String email, String password) {
     	//u.setId(id);
     	u.setName(name);
     	u.setEmail(email);

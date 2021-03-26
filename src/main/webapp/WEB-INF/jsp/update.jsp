@@ -58,16 +58,13 @@
 					    	<input type="text" class="form-control" name="taskemail" id="taskemail" required>
 					  	</div>
 					  	<br>
-						<div class="input-group">
-					    	<span class="input-group-text" id="basic-addon1">Severity</span>
-					    	<select class="form-select" aria-label="Default select example" >
+					  	<select class="form-select" id="sev" name="sev">
 							  <option selected>Select...</option>
-							  <option value="1">High</option>
-							  <option value="2">Medium</option>
-							  <option value="3">Low</option>
-							</select>
-					  	</div>
-					  	 	
+							  <option value="High">High</option>
+							  <option value="Medium">Medium</option>
+							  <option value="Low">Low</option>
+						</select>
+	
 						<br><br><input type="submit" value="Enter" class="btn btn-secondary mb-2"/>
 					</form>	
 				</div>
