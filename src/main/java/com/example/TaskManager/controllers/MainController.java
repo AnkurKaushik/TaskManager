@@ -148,5 +148,26 @@ public class MainController {
 		 //taskService.UpdateTask(at);
 		 return "dashboard";
 	 }
+	 
+	 @GetMapping("/tasks")
+	 public String seeTasks(ModelMap modelMap) {
+		 Iterable<Task> t = taskRepository.findAllByUser(currUser);
+		 modelMap.addAttribute("alltasks",t);
+		 return "tasks";
+	 }
+	 
+	 @GetMapping("/dashboard")                     
+	 public String returnDashboard(ModelMap modelMap) {
+		modelMap.put("userName", currUser.getName());
+        return "dashboard";           
+	 }
+	 
+	 @GetMapping("/delete")
+	 public String deleteTask(@RequestParam("taskid") Integer taskid, ModelMap modelMap) {
+		 taskRepository.deleteById(taskid);
+		 modelMap.put("sTask", "Successfully deleted task: " + taskid);
+		 modelMap.put("userName", currUser.getName());
+	     return "dashboard";     
+	 }
 }
 

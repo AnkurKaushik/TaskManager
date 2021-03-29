@@ -35,8 +35,7 @@
 					
 					<div class="btn-group">
 					  <a href="update" class="btn btn-primary">Add Task</a>
-					  <a href="#" class="btn btn-primary">View Tasks</a>
-					  <a href="#" class="btn btn-primary">Delete Task</a>
+					  <a href="tasks" class="btn btn-primary">View and Delete Tasks</a>
 					</div>
 						
 				</div>
